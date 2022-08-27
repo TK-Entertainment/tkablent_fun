@@ -4,10 +4,6 @@ import discord
 
 from discord.ext import commands
 
-# Just for fetching current year
-cdt = datetime.datetime.now().date()
-year = cdt.strftime("%Y")
-
 firstpage_emoji = discord.PartialEmoji.from_str('⏪')
 prevpage_emoji = discord.PartialEmoji.from_str('⬅️')
 nextpage_emoji = discord.PartialEmoji.from_str('➡️')
@@ -25,7 +21,14 @@ end_emoji = discord.PartialEmoji.from_str('❎')
 
 frame_photo_emoji = discord.PartialEmoji.from_str('🖼️')
 
+def get_current_year():
+    # Just for fetching current year
+    cdt = datetime.datetime.now().date()
+    year = cdt.strftime("%Y")
+    return year
+
 def _generate_embed_option(bot: commands.Bot, bot_version):
+    year = get_current_year()
     return {
         'footer': {
             'text': f"{bot.user.name} | 版本: {bot_version}\nCopyright @ {year} TK Entertainment",

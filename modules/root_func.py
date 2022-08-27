@@ -15,10 +15,9 @@ from .bullshit import Bullshit
 from .ui import UI
 
 class RootCommands(commands.Cog):
-    def __init__(self, bot, bot_version):
+    def __init__(self, ui):
         super().__init__()
-        self.bot = bot
-        self.ui: UI = UI(bot, bot_version)
+        self.ui: UI = ui
 
     async def meme(self, command: Union[commands.Context, discord.Interaction]):
         if not isinstance(command, Command):
@@ -32,3 +31,16 @@ class RootCommands(commands.Cog):
     @app_commands.command(name='meme', description='找給我好笑的梗圖owo')
     async def _i_meme(self, interaction: discord.Interaction):
         await self.meme(interaction)
+
+    async def bullshit(self, command: Union[commands.Context, discord.Interaction]):
+        if not isinstance(command, Command):
+            command: Optional[Command] = Command(command)
+        await self.ui.SendBullshit(command)
+
+    @commands.command(name='bullshit')
+    async def _c_bullshit(self, ctx: commands.Context):
+        await self.bullshit(ctx)
+
+    @app_commands.command(name='bullshit', description='給我一句至理名言 (幹話)')
+    async def _i_bullshit(self, interaction: discord.Interaction):
+        await self.bullshit(interaction)

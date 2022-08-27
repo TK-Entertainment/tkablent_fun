@@ -32,6 +32,7 @@ intents.message_content = True
 bot = commands.Bot(command_prefix=prefix, intents=intents, help_command=None, status=status)
 
 from modules import *
+from modules.ui import UI
 
 precenses = [
     discord.Game(f'需要幫助? | {bot.command_prefix}help'),
@@ -54,10 +55,12 @@ async def precense_update():
     #     player.disconnect()
     # node.disconnect()
 
+ui = UI(bot, bot_version)
+
 @bot.event
 async def on_ready():
     bot.loop.create_task(precense_update())
-    await bot.add_cog(RootCommands(bot, bot_version))
+    await bot.add_cog(RootCommands(ui))
     await bot.tree.sync()
 
     # await cog.resolve_ui()
