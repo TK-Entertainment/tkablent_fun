@@ -31,6 +31,8 @@ intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix=prefix, intents=intents, help_command=None, status=status)
 
+from modules import *
+
 precenses = [
     discord.Game(f'需要幫助? | {bot.command_prefix}help'),
     discord.Game(f'來點迷因? | {bot.command_prefix}meme'),
@@ -55,8 +57,8 @@ async def precense_update():
 @bot.event
 async def on_ready():
     bot.loop.create_task(precense_update())
-    # await bot.add_cog(HelperCog(bot))
-    # await bot.tree.sync()
+    await bot.add_cog(RootCommands(bot, bot_version))
+    await bot.tree.sync()
 
     # await cog.resolve_ui()
 
