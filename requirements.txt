@@ -1,0 +1,6 @@
+requests
+discord.py[voice]
+python_dotenv
+spotipy
+wavelink
+ytmusicapi
