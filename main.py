@@ -26,12 +26,6 @@ else:
 
 dotenv.load_dotenv()
 TOKEN = os.getenv('TOKEN')
-HOST = os.getenv('WAVELINK_HOST')
-SEARCH_HOST = os.getenv('WAVELINK_SEARCH_HOST')
-PORT = os.getenv('WAVELINK_PORT')
-PASSWORD = os.getenv('WAVELINK_PWD')
-SPOTIFY_ID = os.getenv('SPOTIFY_ID')
-SPOTIFY_SECRET = os.getenv('SPOTIFY_SECRET')
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -41,7 +35,7 @@ precenses = [
     discord.Game(f'需要幫助? | {bot.command_prefix}help'),
     discord.Game(f'來點迷因? | {bot.command_prefix}meme'),
     discord.Game(f'來點幹話? | {bot.command_prefix}bullshit'),
-    discord.Game(f'來點音樂? | {bot.command_prefix}music'),
+    discord.Game(f'來點音樂? | {bot.command_prefix}play'),
 ]
 
 async def precense_update():
